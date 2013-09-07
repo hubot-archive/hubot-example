@@ -33,3 +33,21 @@ Some of the advantages of building an npm package for your hubot script(s) are:
 * You can specify dependencies in the `package.json` rather than have users
   manually specify them
 * You can easily add tests using your favourite frameworks and libraries
+
+## Using with Hubot
+
+Add dependency to `package.json`:
+```json
+{
+  ...
+  "dependencies": {
+    ...
+    "hubot-example": "git://github.com/hubot-scripts/hubot-example.git#master"
+  }
+}
+```
+
+Include package in `external-scripts.json`:
+```json
+["hubot-example"]
+```

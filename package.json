@@ -1,6 +1,6 @@
 {
   "name": "hubot-example",
-  "description": "An example script pacakage for Hubot",
+  "description": "An example script package for Hubot",
   "version": "1.0.0",
   "author": "Tom Bell <tomb@tomb.io>",
   "license": "MIT",

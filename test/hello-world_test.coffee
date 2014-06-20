@@ -1,8 +1,15 @@
-chai = require 'chai'
+chai  = require 'chai'
 sinon = require 'sinon'
 chai.use require 'sinon-chai'
 
 expect = chai.expect
+
+strToMatch = ''
+matchFunc  = (val) ->
+    expect(val).to.be.a( 'regexp' )
+    match = strToMatch.match( val )
+    return match != null
+regexpMatcher = sinon.match( matchFunc, 'Matches' + strToMatch )
 
 describe 'hello-world', ->
   beforeEach ->
@@ -12,8 +19,16 @@ describe 'hello-world', ->
 
     require('../src/hello-world')(@robot)
 
-  it 'registers a respond listener', ->
-    expect(@robot.respond).to.have.been.calledWith(/hello/)
+    strToMatch = ''
+
+  it 'does not respond to "goodbye"', ->
+    strToMatch = 'goodbye'
+    expect(@robot.respond).to.not.have.been.calledWith( sinon.match(regexpMatcher) )
+
+  it 'responds to "hello"', ->
+    strToMatch = 'hello'
+    expect(@robot.respond).to.have.been.calledWith( sinon.match(regexpMatcher) )
 
   it 'registers a hear listener', ->
-    expect(@robot.hear).to.have.been.calledWith(/orly/)
+    strToMatch = 'orly'
+    expect(@robot.hear).to.have.been.calledWith( sinon.match(regexpMatcher) )

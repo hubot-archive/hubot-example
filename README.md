@@ -3,5 +3,6 @@ This repository used to include an example script package for Hubot. Since then,
 ```
 npm install -g yo generator-hubot
 mkdir hubot-example
+cd hubot-example
 yo hubot:script
 ```
